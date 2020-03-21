@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "args.h"
 
@@ -10,11 +11,11 @@ char *getArg(int argc, char *argv[]){
         }
 
         else if (strcmp(argv[i], "--help") == 0){
-            displayUsage();
+            displayUsage(argv[0]);
         }
     }
 
-    displayUsage();
+    displayUsage(argv[0]);
 }
 
 void displayUsage(char *arg){
