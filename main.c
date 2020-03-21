@@ -4,6 +4,7 @@
 
 #include "libs/args.h"
 #include "libs/check.h"
+#include "libs/trace64.h"
 
 int main(int argc, char *argv[]){
 
@@ -16,7 +17,7 @@ int main(int argc, char *argv[]){
         }
 
         else if (is64BitsBinary(filename)){
-            printf("This is good...\n");
+           tracex64(filename, argv);
         }
 
         else {
