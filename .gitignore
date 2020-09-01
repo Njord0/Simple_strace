@@ -1,1 +1,15 @@
-*.out
+*.gch
+*.cmake
+*.so
+*.o
+
+Makefile
+bin/strace_like
+
+.gdb_history
+CMakeCache.txt
+
+CMakesFiles
+CMakesFiles/*
+*/CMakesFiles
+src/CMakesFiles
