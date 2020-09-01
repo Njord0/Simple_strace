@@ -8,7 +8,7 @@
 #define L_WARNING   1
 #define L_LOG       0
 
-void log(unsigned int type, const char* message);
+void log_(unsigned int type, const char* message);
 
 
 
