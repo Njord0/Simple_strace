@@ -9,6 +9,8 @@
 
 #include "trace64.h"
 
+#include "../logging.h"
+
 void tracex64(char *filename, char **argv)
 {
 
@@ -16,7 +18,7 @@ void tracex64(char *filename, char **argv)
 
     switch (pid) {
         case -1:
-            fprintf(stderr, "Error happened while fork()...\n\n");
+            log_(L_ERROR, "Error happened while fork()...");
         case 0:
             ptrace(PTRACE_TRACEME, 0, 0, 0);
             execvp(filename, argv+1);
@@ -29,16 +31,9 @@ void tracex64(char *filename, char **argv)
     {
 
         if (ptrace(PTRACE_SYSCALL, pid, 0, 0) == -1)
-        {
-            fprintf(stderr, "Error on ptrace syscall...\n"); // First we catch syscall before execution
-            exit(-1);
-        }
-
+            log_(L_ERROR, "Error on ptrace syscall...");
         if (waitpid(pid, 0, 0) == -1)
-        {
-            fprintf(stderr, "Error...\n");
-            exit(-1);
-        }
+           log_(L_ERROR, "Error...");
 
         struct user_regs_struct regs;
         ptrace(PTRACE_GETREGS, pid, 0, &regs);
