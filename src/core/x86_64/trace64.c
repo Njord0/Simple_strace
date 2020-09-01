@@ -11,12 +11,13 @@
 
 #include "../logging.h"
 
-void tracex64(char *filename, char **argv)
+void tracex64(const char *filename, char **argv)
 {
 
     pid_t pid = fork();
 
-    switch (pid) {
+    switch (pid)
+    {
         case -1:
             log_(L_ERROR, "Error happened while fork()...");
         case 0:
@@ -43,9 +44,9 @@ void tracex64(char *filename, char **argv)
             char *name = syscall_name[regs.orig_rax];
             printf("%s()\n", name);
         }
-        else{
+        else
             printf("%llx\n", regs.orig_rax); //
-        }
+
 
 
         if (regs.orig_rax == 231)
@@ -54,10 +55,7 @@ void tracex64(char *filename, char **argv)
 
 
         if (ptrace(PTRACE_SYSCALL, pid, 0, 0) == -1)
-        {
-            fprintf(stderr, "Error on ptrace syscall\n");
-            exit(-1);
-        }
+            log_(L_ERROR, "Syscall error...");
 
         waitpid(pid, 0, 0);
     }
