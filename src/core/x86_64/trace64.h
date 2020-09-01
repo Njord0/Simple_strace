@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void tracex64(char *filename, char **argv);
+void tracex64(const char *filename, char **argv);
 
 static char *syscall_name[] =
 {
