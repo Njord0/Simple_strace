@@ -1,9 +1,13 @@
+#ifndef _TRACE64_H
+#define _TRACE64_H
+
 #include <stdlib.h>
 #include <stdio.h>
 
-void tracex64(char *filename, char *argv[]);
+void tracex64(char *filename, char **argv);
 
-static const char *syscallName[] = {
+static char *syscall_name[] = 
+{
     "read",
     "write",
     "open",
@@ -51,3 +55,5 @@ static const char *syscallName[] = {
     "recvfrom", // 45
 
 };
+
+#endif

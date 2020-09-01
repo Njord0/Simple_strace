@@ -9,7 +9,8 @@
 
 #include "trace64.h"
 
-void tracex64(char *filename, char *argv[]){
+void tracex64(char *filename, char **argv)
+{
 
     pid_t pid = fork();
 
@@ -24,15 +25,17 @@ void tracex64(char *filename, char *argv[]){
     waitpid(pid, 0, 0);
     ptrace(PTRACE_SETOPTIONS, pid, 0, PTRACE_O_EXITKILL);
 
-    for (;;){
+    for (;;)
+    {
         
-
-        if (ptrace(PTRACE_SYSCALL, pid, 0, 0) == -1){
+        if (ptrace(PTRACE_SYSCALL, pid, 0, 0) == -1)
+        {
             fprintf(stderr, "Error on ptrace syscall...\n"); // First we catch syscall before execution
             exit(-1);
         }
 
-        if (waitpid(pid, 0, 0) == -1){
+        if (waitpid(pid, 0, 0) == -1)
+        {
             fprintf(stderr, "Error...\n");
             exit(-1);
         }
@@ -41,7 +44,7 @@ void tracex64(char *filename, char *argv[]){
         ptrace(PTRACE_GETREGS, pid, 0, &regs);
 
         if (regs.orig_rax < 45 ){
-            char *name = syscallName[regs.orig_rax];
+            char *name = syscall_name[regs.orig_rax];
             printf("%s()\n", name);
         }
         else{
@@ -49,12 +52,14 @@ void tracex64(char *filename, char *argv[]){
         }
 
 
-        if (regs.orig_rax == 231){
+        if (regs.orig_rax == 231)
+        {
             exit(-1);
         }
 
 
-        if (ptrace(PTRACE_SYSCALL, pid, 0, 0) == -1){
+        if (ptrace(PTRACE_SYSCALL, pid, 0, 0) == -1)
+        {
             fprintf(stderr, "Error on ptrace syscall\n");
             exit(-1);
         }
