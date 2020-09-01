@@ -6,6 +6,7 @@
 #include "utils/check.h"
 
 #include "core/logging.h"
+#include "core/x86/trace.h"
 #include "core/x86_64/trace64.h"
 
 int main(int argc, char **argv)
@@ -20,11 +21,11 @@ int main(int argc, char **argv)
     if (is_elf_file(fp))
     {
         if (is_elf32(fp))
-            log_(L_ERROR, "Not supported yet");
+            tracex86(filename, argv);
 
 
         else if (is_elf64(fp))
-           tracex64(filename, argv);
+            tracex64(filename, argv);
 
 
 
