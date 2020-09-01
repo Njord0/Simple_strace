@@ -2,21 +2,22 @@
 Simple strace-like tool, created to understand how strace works and how ptrace syscall works.
 
 ## Installation
-```bash
+```
 git clone https://github.com/Njord0/Simple_strace.git
 cd Simple_strace
+cmake .
 make
 ```
 
 ## Usage
-To trace the execution of an executable: 
+To trace the execution of an executable:
 ```bash
-./tracer --binary 'filename'
+bin/strace_like --binary 'filename'
 ```
 
 To display usage:
 ```bash
-./tracer --help
+bin/strace_like --help
 ```
 ### To-do
 * Add option to trace the execution of a program with the pid
