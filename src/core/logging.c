@@ -3,7 +3,7 @@
 
 #include "logging.h"
 
-void log(unsigned int type, const char* message)
+void log_(unsigned int type, const char* message)
 {
     if (type == L_ERROR)
     {
