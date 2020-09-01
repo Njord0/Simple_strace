@@ -4,7 +4,9 @@
 
 #include "utils/args.h"
 #include "utils/check.h"
-#include "core/trace64.h"
+
+#include "core/logging.h"
+#include "core/x86_64/trace64.h"
 
 int main(int argc, char **argv)
 {
@@ -18,21 +20,18 @@ int main(int argc, char **argv)
     if (is_elf_file(fp))
     {
         if (is_elf32(fp))
-        {
-            fprintf(stderr, "[!] Not supported yet...\n");
-            return -1;
-        }
+            log_(L_ERROR, "Not supported yet");
+
 
         else if (is_elf64(fp))
            tracex64(filename, argv);
-        
-    
 
-        else 
-        {
-            fprintf(stderr, "Unsupported arch...\n");
-            return -1;
-        }
+
+
+        else
+            log_(L_ERROR, "Unknow arch...");
+
+
     }
 
     return 0;
