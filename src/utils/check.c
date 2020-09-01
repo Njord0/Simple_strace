@@ -21,7 +21,8 @@ bool is_elf_file(FILE *fp)
 bool is_elf32(FILE *fp)
 {
     char buffer[5];
-
+    
+    fseek(fp, 0, SEEK_SET);
     fread(buffer, sizeof(buffer), 1, fp);
 
     if (buffer[4] == 1)
