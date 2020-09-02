@@ -21,7 +21,6 @@ bin/strace_like --help
 ```
 ### To-do
 * Add option to trace the execution of a program with the pid
-* Add support for 32 bits elf binary
 * Add support for some arm architecture
 * Fetch the arguments for every syscalls
 * Add the return value of syscalls(eax register)
