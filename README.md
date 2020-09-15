@@ -20,6 +20,7 @@ To display usage:
 bin/strace_like --help
 ```
 ### To-do
+* 
 * Add option to trace the execution of a program with the pid
 * Add support for some arm architecture
 * Fetch the arguments for every syscalls
